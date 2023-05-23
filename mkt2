@@ -1,0 +1,15 @@
+TARGET := test2
+SRC := $(TARGET).c
+OBJ := $(TARGET).o
+
+CFLAGS := -g -Wall
+LDFLAGS := -L. -ldlink
+CC := gcc
+
+all : $(TARGET)
+$(TARGET): $(OBJ) 
+	$(CC) -o test2 test2.c $(LDFLAGS)
+.c.o:
+	$(CC) -c $^ $(LDFLAGS)
+clean:
+	rm -f $(TARGET) $(OBJ)
