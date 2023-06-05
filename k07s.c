@@ -59,6 +59,8 @@ int main(int argc,char *argv[])
 		if(sendto(sock, echoBuffer, recvMsgSize, 0, (struct sockaddr *) &echoClntAddr
 		 , sizeof(echoClntAddr)) != recvMsgSize)
 			excep("sendto() sent a different number of bytes than expected");
+
+		printf("disconnect client %s\n",inet_ntoa(echoClntAddr.sin_addr));
 	}
 
 }

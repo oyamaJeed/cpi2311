@@ -6,6 +6,7 @@
 #include<unistd.h>
 
 #define ECHOMAX 255
+#define ECHORECV 32
 
 void excep(char *errorMessage)
 {
@@ -22,7 +23,7 @@ int main(int argc,char *argv[])
 	unsigned int  fromSize;
 	char *servIP;
 	char *echoString;
-	char echoBuffer[ECHOMAX+1];
+	char echoBuffer[32];
 	int echoStringLen;
 	int respStringLen;
 
@@ -73,8 +74,8 @@ int main(int argc,char *argv[])
 
 	fromSize = sizeof(fromAddr);
 
-	if((respStringLen = recvfrom(sock,echoBuffer,ECHOMAX,0
-	 ,(struct sockaddr *)&fromAddr,&fromSize)) != echoStringLen)
+	if((respStringLen = recvfrom(sock,echoBuffer,ECHORECV,0
+	 ,(struct sockaddr *)&fromAddr,&fromSize)) > strlen(echoBuffer))
 		excep("recvfrom failed\n");
 
 	if(echoServAddr.sin_addr.s_addr!=fromAddr.sin_addr.s_addr){
