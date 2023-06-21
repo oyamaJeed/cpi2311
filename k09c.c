@@ -15,6 +15,7 @@
 
 int tries=0;
 
+struct sigaction myAction;
 
 void excep(char *errrorMessage);
 void SIGALRMHandler(int sigType);
@@ -79,14 +80,14 @@ int main(int argc,char *argv[])
 
 
 	myAction.sa_handler = SIGALRMHandler;
-	if(sigfillset(&myAction.sa_mask) < 0){
+	if(sigfillset(&myAction.sa_mask) < 0)
 		excep("sigfillset() failed\n");
 	myAction.sa_flags = 0;
 
 
-	if(sigaction(SIGALRM, &myAction, 0) < 0){
+	if(sigaction(SIGALRM, &myAction, 0) < 0)
 		excep("sigaction() failed for SIGALRM\n");
-	}
+
 
 
 	memset(&echoServAddr,0,sizeof(echoServAddr));
