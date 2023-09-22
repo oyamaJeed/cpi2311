@@ -51,6 +51,7 @@ int main(int argc,char *argv[])
 		fprintf(stderr,"Failed to connect Server\n");
 		exit(1);
 	}
+	sleep(5);
 
 	echoStringLen = strlen(echoString);
 
