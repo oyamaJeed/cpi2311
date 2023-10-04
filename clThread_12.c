@@ -7,7 +7,7 @@ void *threadMain(void *thrArgs) {
 	int clSock;	// Socket Descripter for Client
 	
 	pthread_detach(pthread_self());	// --> release resources
-	
+	printf("pthread_self = %lu\n",pthread_self());
 	/* ARGUMENT */
 	clSock = ((struct threadArgs *)thrArgs)->clSock;
 	free(thrArgs);
